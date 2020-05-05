@@ -2,7 +2,7 @@
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
-  "username": "andrew.griffiths",
+  "username": "andrew",
   "password": "",
   "database": "jwt-auth",
   "synchronize": true,
@@ -14,11 +14,11 @@
     "src/orm/migration/**/*.ts"
   ],
   "subscribers": [
-    "src/subscriber/**/*.ts"
+    "src/orm/subscriber/**/*.ts"
   ],
   "cli": {
-    "entitiesDir": "src/entity",
-    "migrationsDir": "src/migration",
-    "subscribersDir": "src/subscriber"
+    "entitiesDir": "src/orm/entity",
+    "migrationsDir": "src/orm/migration",
+    "subscribersDir": "src/orm/subscriber"
   }
 }
