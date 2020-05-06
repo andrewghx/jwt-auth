@@ -6,7 +6,7 @@ import { createRefreshToken, createAccessToken } from '~/auth/createTokens'
 import { checkAuth } from '~/auth/checkAuth'
 import { sendRefreshToken } from '~/auth/sendRefreshToken'
 import { revokeRefreshToken } from '~/auth/revokeRefreshToken'
-import { UserDetails, LoginResponse } from './objectTypes'
+import { LoginResponse } from './objectTypes'
 
 @Resolver()
 export class UserResolver {
@@ -15,7 +15,7 @@ export class UserResolver {
     return 'hi!'
   }
 
-  @Query(() => UserDetails)
+  @Query(() => User)
   @UseMiddleware(checkAuth)
   async userDetails(
     @Ctx() { payload }: Context
@@ -68,8 +68,17 @@ export class UserResolver {
     sendRefreshToken(res, createRefreshToken(user))
 
     return {
-      accessToken: createAccessToken(user)
+      accessToken: createAccessToken(user),
+      user
     } 
+  }
+
+  @Mutation(() => Boolean)
+  async logout(
+    @Ctx() { res }: Context
+  ): Promise<Boolean> {
+    sendRefreshToken(res, '')
+    return true
   }
 }
 

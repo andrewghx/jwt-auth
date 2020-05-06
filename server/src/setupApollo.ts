@@ -12,7 +12,7 @@ export const setupApolloServer = async (app: Application) => {
     context: ({ req, res }: Context) => ({ req, res })
   })
   
-  apolloServer.applyMiddleware({ app })
+  apolloServer.applyMiddleware({ app, cors: false })
 }
 
 

@@ -1,16 +1,10 @@
 import { Field, ObjectType } from 'type-graphql'
+import { User } from '~/orm/entity/User'
 
 @ObjectType()
 export class LoginResponse {
   @Field()
   accessToken: string
-}
-
-@ObjectType()
-export class UserDetails {
-  @Field()
-  id: number
-
-  @Field()
-  email: string
+  @Field(() => User)
+  user: User
 }
